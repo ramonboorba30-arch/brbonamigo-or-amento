@@ -589,16 +589,48 @@
         
         .admin-config-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         
-        /* WHATSAPP PREVIEW */
+        /* WHATSAPP MODAL - PREVIEW COMPLETO */
         .whatsapp-preview-container {
-            background: #128C7E; padding: 20px; border-radius: 10px; margin-top: 15px;
+            background: #128C7E;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
         }
-        .whatsapp-preview-container h4 { color: white; margin-bottom: 15px; }
+        
+        .whatsapp-preview-container h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
         .whatsapp-image-preview {
-            background: white; border-radius: 10px; padding: 10px; text-align: center;
-            max-height: 400px; overflow: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            max-height: 500px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
-        .whatsapp-image-preview img { max-width: 100%; border-radius: 5px; }
+        
+        .whatsapp-image-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Modal WhatsApp maior para melhor visualização */
+        #envioWhatsAppModal .modal-content {
+            max-width: 900px;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+        
+        #envioWhatsAppModal .modal-body {
+            max-height: calc(95vh - 150px);
+            overflow-y: auto;
+        }
         
         /* SYNCING INDICATOR */
         .syncing-indicator {
@@ -625,7 +657,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.3s;
         }
         .shortcuts-btn:hover { transform: scale(1.1); }
-        
         /* ============================================
            EDITOR DE LAYOUT - CSS
            ============================================ */
@@ -889,7 +920,6 @@
             </form>
         </div>
     </div>
-    
     <!-- SISTEMA PRINCIPAL -->
     <div id="sistema" class="sistema">
         <header class="main-header">
@@ -928,10 +958,9 @@
                 <button id="btnUsuarios" class="nav-btn admin-only" onclick="mudarTela('usuarios', this)" style="display:none;">
                     👥 <span class="nav-text">Usuários</span>
                 </button>
-		<!-- ⬇️⬇️⬇️ ADICIONE ESTA LINHA AQUI ⬇️⬇️⬇️ -->
-    		<button class="nav-btn" onclick="abrirFinanceiro()" title="Financeiro">
-    		💲 <span class="nav-text">Financeiro</span>
-		</button>
+                <button class="nav-btn" onclick="abrirFinanceiro()" title="Financeiro">
+                    💲 <span class="nav-text">Financeiro</span>
+                </button>
             </nav>
             
             <div class="header-actions">
@@ -1285,7 +1314,6 @@
                 </div>
             </div>
         </div>
-
         <!-- TELA DE ORÇAMENTOS SALVOS -->
         <div id="tela-salvos" class="screen orcamentos-salvos-screen">
             <div class="card">
@@ -1444,6 +1472,7 @@
                 <div id="produtosMaisVendidos"></div>
             </div>
         </div>
+
         <!-- TELA DE BACKUP -->
         <div id="tela-backup" class="screen backup-screen">
             <div class="card">
@@ -1546,7 +1575,6 @@
                 <div id="listaUsuarios"></div>
             </div>
         </div>
-        
         <!-- TELA DE CONFIGURAÇÕES -->
         <div id="tela-configuracoes" class="screen configuracoes-screen">
             <div class="card">
@@ -1592,27 +1620,40 @@
                 </div>
             </div>
             
-            <!-- MENSAGENS WHATSAPP -->
+            <!-- MENSAGENS WHATSAPP - SEÇÃO MELHORADA -->
             <div class="config-section" style="margin-top: 20px;">
-                <h3>📱 Mensagens do WhatsApp</h3>
+                <h3>📱 Mensagens Padrão do WhatsApp</h3>
                 <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                    Use as variáveis: <code>{cliente}</code>, <code>{numero}</code>, <code>{valor}</code>, <code>{empresa}</code>, <code>{endereco}</code>, <code>{telefone}</code>
+                    Configure as mensagens que serão enviadas junto com o orçamento. Use as variáveis abaixo:
                 </p>
+                
+                <div style="background: var(--bg-input); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+                    <strong style="color: var(--text-primary); font-size: 12px;">📌 Variáveis disponíveis (clique para copiar):</strong>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                        <code style="background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copiarPlaceholder('{cliente}')">{cliente}</code>
+                        <code style="background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copiarPlaceholder('{numero}')">{numero}</code>
+                        <code style="background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copiarPlaceholder('{valor}')">{valor}</code>
+                        <code style="background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copiarPlaceholder('{empresa}')">{empresa}</code>
+                        <code style="background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copiarPlaceholder('{endereco}')">{endereco}</code>
+                        <code style="background: var(--primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copiarPlaceholder('{telefone}')">{telefone}</code>
+                    </div>
+                </div>
                 
                 <div class="grid-2">
                     <div class="form-group">
                         <label class="form-label">📱 Mensagem para CLIENTE:</label>
-                        <textarea id="msgWhatsAppCliente" class="form-textarea" rows="5" onchange="salvarMensagensWhatsApp()">Olá {cliente}! 👋
+                        <textarea id="msgWhatsAppCliente" class="form-textarea" rows="8" placeholder="Digite a mensagem padrão para clientes...">Olá {cliente}! 👋
 
 Segue o orçamento {numero} da {empresa}.
 
 💰 Valor Total: {valor}
 
 Aguardamos sua confirmação! ✅</textarea>
+                        <small style="color: var(--text-secondary); font-size: 11px;">Esta mensagem será enviada quando clicar em "WhatsApp Cliente"</small>
                     </div>
                     <div class="form-group">
                         <label class="form-label">🚚 Mensagem para MOTORISTA:</label>
-                        <textarea id="msgWhatsAppMotorista" class="form-textarea" rows="5" onchange="salvarMensagensWhatsApp()">🚚 ENTREGA - {numero}
+                        <textarea id="msgWhatsAppMotorista" class="form-textarea" rows="8" placeholder="Digite a mensagem padrão para motoristas...">🚚 ENTREGA - {numero}
 
 👤 Cliente: {cliente}
 📍 Endereço: {endereco}
@@ -1620,8 +1661,13 @@ Aguardamos sua confirmação! ✅</textarea>
 💰 Valor: {valor}
 
 Bom trabalho! 💪</textarea>
+                        <small style="color: var(--text-secondary); font-size: 11px;">Esta mensagem será enviada quando clicar em "WhatsApp Motorista"</small>
                     </div>
                 </div>
+                
+                <button class="btn btn-success" style="margin-top: 15px;" onclick="salvarMensagensWhatsApp()">
+                    💾 Salvar Mensagens
+                </button>
             </div>
             
             <!-- Formas de Pagamento -->
@@ -1684,7 +1730,6 @@ CNPJ: 00.000.000/0001-00</textarea>
                 </div>
             </div>
         </div>
-        
         <!-- ============================================
              TELA DE EDITOR DE LAYOUT
              ============================================ -->
@@ -1791,7 +1836,6 @@ CNPJ: 00.000.000/0001-00</textarea>
             </div>
         </div>
     </div>
-    
     <!-- ========================================
          MODAIS
          ======================================== -->
@@ -2295,7 +2339,6 @@ TOTAL: {total}</textarea>
             document.getElementById('filtroDataEntrega').value = hoje;
         }
     };
-    
     // ============================================
     // AUTENTICAÇÃO
     // ============================================
@@ -2512,10 +2555,44 @@ TOTAL: {total}</textarea>
             }
         });
     }
+    // ============================================
+    // WHATSAPP COM IMAGEM - CORRIGIDO
+    // ============================================
+    async function carregarMensagensWhatsApp() {
+        try {
+            const msgDoc = await db.collection('configuracoes').doc('mensagens').get();
+            if (msgDoc.exists) {
+                const data = msgDoc.data();
+                msgWhatsAppCliente = data.cliente || '';
+                msgWhatsAppMotorista = data.motorista || '';
+            }
+            
+            // Se não houver mensagens salvas, usar padrão
+            if (!msgWhatsAppCliente) {
+                msgWhatsAppCliente = `Olá {cliente}! 👋
+
+Segue o orçamento {numero} da {empresa}.
+
+💰 Valor Total: {valor}
+
+Aguardamos sua confirmação! ✅`;
+            }
+            
+            if (!msgWhatsAppMotorista) {
+                msgWhatsAppMotorista = `🚚 ENTREGA - {numero}
+
+👤 Cliente: {cliente}
+📍 Endereço: {endereco}
+📱 Telefone: {telefone}
+💰 Valor: {valor}
+
+Bom trabalho! 💪`;
+            }
+        } catch (error) {
+            console.log('Erro ao carregar mensagens:', error);
+        }
+    }
     
-    // ============================================
-    // WHATSAPP COM IMAGEM
-    // ============================================
     async function abrirModalEnvioWhatsApp(tipo) {
         tipoEnvioWhatsApp = tipo;
         imagemOrcamentoAtual = null;
@@ -2526,8 +2603,11 @@ TOTAL: {total}</textarea>
         const mensagemInput = document.getElementById('mensagemWhatsApp');
         const previewImg = document.getElementById('whatsappImagePreview');
         
-        previewImg.innerHTML = '<p style="color: var(--text-secondary);">Gerando imagem...</p>';
+        previewImg.innerHTML = '<div style="text-align: center; padding: 40px;"><div class="loading-spinner" style="width: 40px; height: 40px; border: 3px solid rgba(0,0,0,0.1); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div><p style="color: var(--text-secondary); margin-top: 15px;">Gerando imagem do orçamento...</p></div>';
         document.getElementById('statusEnvio').style.display = 'none';
+        
+        // Carregar mensagens salvas do Firebase
+        await carregarMensagensWhatsApp();
         
         let orcamento;
         if (tipo === 'cliente') {
@@ -2567,9 +2647,10 @@ TOTAL: {total}</textarea>
         
         modal.classList.add('active');
         
+        // Aguardar modal abrir e gerar imagem
         setTimeout(async () => {
             await gerarImagemOrcamento();
-        }, 300);
+        }, 500);
     }
     
     function preencherSelectMotoristas() {
@@ -2612,25 +2693,70 @@ TOTAL: {total}</textarea>
                 return;
             }
             
+            // Criar container temporário com tamanho adequado para A4
             const tempDiv = document.createElement('div');
-            tempDiv.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 800px; background: white; padding: 20px;';
-            tempDiv.innerHTML = previewElement.innerHTML;
+            tempDiv.style.cssText = `
+                position: absolute;
+                left: -9999px;
+                top: 0;
+                width: 794px;
+                min-height: 1123px;
+                background: white;
+                padding: 0;
+                overflow: visible;
+            `;
+            
+            // Criar wrapper interno com mesmo estilo do preview original
+            const innerWrapper = document.createElement('div');
+            innerWrapper.style.cssText = `
+                width: 100%;
+                min-height: 100%;
+                background: white;
+                position: relative;
+                padding: 20px;
+                box-sizing: border-box;
+            `;
+            innerWrapper.innerHTML = previewElement.innerHTML;
+            tempDiv.appendChild(innerWrapper);
             document.body.appendChild(tempDiv);
+            
+            // Aguardar carregamento de imagens
+            const images = tempDiv.querySelectorAll('img');
+            await Promise.all(Array.from(images).map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise((resolve) => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                });
+            }));
+            
+            // Calcular altura real do conteúdo
+            const alturaReal = Math.max(innerWrapper.scrollHeight, innerWrapper.offsetHeight, 1123);
+            tempDiv.style.height = alturaReal + 'px';
+            
+            // Pequeno delay para renderização
+            await new Promise(resolve => setTimeout(resolve, 100));
             
             const canvas = await html2canvas(tempDiv, {
                 scale: 2,
                 useCORS: true,
                 allowTaint: true,
                 backgroundColor: '#ffffff',
-                logging: false
+                logging: false,
+                width: 794,
+                height: alturaReal,
+                windowWidth: 794,
+                windowHeight: alturaReal,
+                scrollX: 0,
+                scrollY: 0
             });
             
             document.body.removeChild(tempDiv);
             
-            const dataUrl = canvas.toDataURL('image/png');
+            const dataUrl = canvas.toDataURL('image/png', 1.0);
             imagemOrcamentoAtual = dataUrl;
             
-            previewContainer.innerHTML = `<img src="${dataUrl}" style="max-width: 100%; border-radius: 5px;">`;
+            previewContainer.innerHTML = `<img src="${dataUrl}" style="max-width: 100%; height: auto; border-radius: 5px;">`;
             document.getElementById('statusEnvio').style.display = 'block';
             
         } catch (error) {
@@ -2726,17 +2852,28 @@ Bom trabalho! 💪`;
     }
     
     async function salvarMensagensWhatsApp() {
-        msgWhatsAppCliente = document.getElementById('msgWhatsAppCliente')?.value || '';
-        msgWhatsAppMotorista = document.getElementById('msgWhatsAppMotorista')?.value || '';
+        const clienteMsg = document.getElementById('msgWhatsAppCliente')?.value || '';
+        const motoristaMsg = document.getElementById('msgWhatsAppMotorista')?.value || '';
+        
+        if (!clienteMsg.trim() && !motoristaMsg.trim()) {
+            Toast.warning('Digite pelo menos uma mensagem!');
+            return;
+        }
+        
+        msgWhatsAppCliente = clienteMsg;
+        msgWhatsAppMotorista = motoristaMsg;
         
         try {
             await db.collection('configuracoes').doc('mensagens').set({
                 cliente: msgWhatsAppCliente,
-                motorista: msgWhatsAppMotorista
+                motorista: msgWhatsAppMotorista,
+                atualizadoEm: new Date().toISOString(),
+                atualizadoPor: usuarioLogado?.nome || 'Admin'
             });
-            Toast.success('Mensagens salvas!');
+            Toast.success('✅ Mensagens salvas com sucesso!');
         } catch (e) {
             console.error('Erro ao salvar mensagens:', e);
+            Toast.error('Erro ao salvar mensagens!');
         }
     }
     
@@ -2746,7 +2883,6 @@ Bom trabalho! 💪`;
         const frete = calcularFrete();
         return sub - desc.valorCalculado + frete.valor;
     }
-    
     // ============================================
     // CONFIGURAÇÕES VISUAIS
     // ============================================
@@ -3088,7 +3224,7 @@ Bom trabalho! 💪`;
             Toast.error('Erro!');
         }
     }
-    
+
     // ============================================
     // FORMAS DE PAGAMENTO
     // ============================================
@@ -3149,7 +3285,6 @@ Bom trabalho! 💪`;
             }
         }
     }
-    
     // ============================================
     // NAVEGAÇÃO E TEMA
     // ============================================
@@ -3260,7 +3395,6 @@ Bom trabalho! 💪`;
         document.body.removeChild(a);
         URL.revokeObjectURL(u);
     }
-    
     // ============================================
     // PRODUTOS
     // ============================================
@@ -3719,7 +3853,6 @@ Bom trabalho! 💪`;
         salvarConfigFirebase();
         return '#' + novoNumero.toString().padStart(5, '0');
     }
-    
     // ============================================
     // GERAR PREVIEW E SALVAR
     // ============================================
@@ -3863,7 +3996,6 @@ Bom trabalho! 💪`;
         document.getElementById('previewContainer').classList.remove('active');
         Toast.info('Novo orçamento!');
     }
-    
     // ============================================
     // ORÇAMENTOS SALVOS
     // ============================================
@@ -3997,72 +4129,70 @@ Bom trabalho! 💪`;
     async function excluirOrcamentoSalvo(id) {
         const o = orcamentosSalvos.find(x => String(x.id) === String(id));
         if (!o) return;
-            if (confirm(`Excluir "${o.numero} - ${o.titulo}"?`)) {
-        try {
-            await db.collection('orcamentos').doc(String(id)).delete();
-            Toast.success('Excluído!');
-        } catch (e) {
-            Toast.error('Erro!');
-        }
-    }
-}
-
-async function alterarStatusOrcamento(id, novoStatus) {
-    const nomes = { pendente: 'Pendente', concluido: 'Concluído', cancelado: 'Cancelado' };
-    
-    if (!confirm(`Alterar para "${nomes[novoStatus]}"?`)) return;
-    
-    try {
-        await db.collection('orcamentos').doc(String(id)).update({ 
-            status: novoStatus, 
-            dataStatus: new Date().toISOString() 
-        });
-        
-        if (novoStatus === 'concluido') {
+        if (confirm(`Excluir "${o.numero} - ${o.titulo}"?`)) {
             try {
-                const orcDoc = await db.collection('orcamentos').doc(String(id)).get();
-                
-                if (orcDoc.exists) {
-                    const orcamento = orcDoc.data();
-                    
-                    await db.collection('financeiro_aprovacoes').add({
-                        orcamentoId: id,
-                        numero: orcamento.numero || 'ORC-' + id,
-                        cliente: orcamento.cliente?.nome || orcamento.clienteNome || 'Cliente',
-                        telefone: orcamento.cliente?.fone || orcamento.clienteFone || '',
-                        valor: orcamento.totalVista || orcamento.total || 0,
-                        itensQtd: orcamento.itens?.length || 0,
-                        vendedor: usuarioLogado?.nome || 'Vendedor',
-                        dataConclusao: new Date().toISOString(),
-                        status: 'pendente',
-                        criadoEm: new Date().toISOString(),
-                        criadoPor: {
-                            id: usuarioLogado?.id || '',
-                            nome: usuarioLogado?.nome || ''
-                        }
-                    });
-                    
-                    console.log('✅ Orçamento enviado para aprovação no financeiro');
-                    Toast.success('Orçamento concluído e enviado para o Financeiro!');
-                } else {
-                    Toast.success('Status: ' + nomes[novoStatus] + '!');
-                }
-            } catch (error) {
-                console.error('❌ Erro ao enviar para financeiro:', error);
-                Toast.success('Status: ' + nomes[novoStatus] + '!');
-                Toast.warning('Não foi possível enviar para o financeiro');
+                await db.collection('orcamentos').doc(String(id)).delete();
+                Toast.success('Excluído!');
+            } catch (e) {
+                Toast.error('Erro!');
             }
-        } else {
-            Toast.success('Status: ' + nomes[novoStatus] + '!');
         }
-        
-    } catch (error) {
-        console.error('Erro ao alterar status:', error);
-        Toast.error('Erro ao alterar status!');
     }
-}
-
     
+    async function alterarStatusOrcamento(id, novoStatus) {
+        const nomes = { pendente: 'Pendente', concluido: 'Concluído', cancelado: 'Cancelado' };
+        
+        if (!confirm(`Alterar para "${nomes[novoStatus]}"?`)) return;
+        
+        try {
+            await db.collection('orcamentos').doc(String(id)).update({ 
+                status: novoStatus, 
+                dataStatus: new Date().toISOString() 
+            });
+            
+            if (novoStatus === 'concluido') {
+                try {
+                    const orcDoc = await db.collection('orcamentos').doc(String(id)).get();
+                    
+                    if (orcDoc.exists) {
+                        const orcamento = orcDoc.data();
+                        
+                        await db.collection('financeiro_aprovacoes').add({
+                            orcamentoId: id,
+                            numero: orcamento.numero || 'ORC-' + id,
+                            cliente: orcamento.cliente?.nome || orcamento.clienteNome || 'Cliente',
+                            telefone: orcamento.cliente?.fone || orcamento.clienteFone || '',
+                            valor: orcamento.totalVista || orcamento.total || 0,
+                            itensQtd: orcamento.itens?.length || 0,
+                            vendedor: usuarioLogado?.nome || 'Vendedor',
+                            dataConclusao: new Date().toISOString(),
+                            status: 'pendente',
+                            criadoEm: new Date().toISOString(),
+                            criadoPor: {
+                                id: usuarioLogado?.id || '',
+                                nome: usuarioLogado?.nome || ''
+                            }
+                        });
+                        
+                        console.log('✅ Orçamento enviado para aprovação no financeiro');
+                        Toast.success('Orçamento concluído e enviado para o Financeiro!');
+                    } else {
+                        Toast.success('Status: ' + nomes[novoStatus] + '!');
+                    }
+                } catch (error) {
+                    console.error('❌ Erro ao enviar para financeiro:', error);
+                    Toast.success('Status: ' + nomes[novoStatus] + '!');
+                    Toast.warning('Não foi possível enviar para o financeiro');
+                }
+            } else {
+                Toast.success('Status: ' + nomes[novoStatus] + '!');
+            }
+            
+        } catch (error) {
+            console.error('Erro ao alterar status:', error);
+            Toast.error('Erro ao alterar status!');
+        }
+    }
     // ============================================
     // ENTREGAS
     // ============================================
@@ -4210,8 +4340,7 @@ async function alterarStatusOrcamento(id, novoStatus) {
         window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
         Toast.info('Cole no grupo de entregas!');
     }
-    
-    // ============================================
+        // ============================================
     // IMPRESSÃO E PDF
     // ============================================
     function imprimirOrcamento() { abrirJanelaImpressao(document.getElementById('orcamentoPreview').innerHTML); }
@@ -4223,6 +4352,7 @@ async function alterarStatusOrcamento(id, novoStatus) {
         w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Imprimir</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial}@page{size:A4;margin:5mm}.orcamento-preview{width:210mm;min-height:297mm;margin:0 auto;position:relative}.preview-element{position:absolute;overflow:hidden}.preview-element.text{white-space:pre-wrap}.preview-element img{width:100%;height:100%;object-fit:contain}.preview-table{width:100%;border-collapse:collapse;font-size:9px}.preview-table th,.preview-table td{border:1px solid #000;padding:4px 6px}.preview-table th{background:#e0e0e0!important;print-color-adjust:exact}.preview-table td.center{text-align:center}.preview-table td.right{text-align:right}.preview-totais{text-align:right;font-weight:bold;font-size:10px;margin-top:8px}.preview-observacoes{margin-top:15px;padding:10px;border:1px solid #000;font-size:10px}.preview-padrao{padding:20px}.preview-padrao .header{text-align:center;border-bottom:2px solid #000;padding-bottom:15px;margin-bottom:15px}.preview-padrao .header img{max-height:60px}.preview-padrao .header .nome{font-size:18px;font-weight:bold}.preview-padrao .header .info{font-size:10px}.preview-padrao .cliente{border:1px solid #000;padding:12px;margin-bottom:15px;font-size:11px;line-height:1.8}.preview-padrao .cliente-row{display:flex;gap:20px}.preview-padrao .vendedor-info{font-size:9px;color:#666;text-align:right;margin-top:10px;border-top:1px dashed #ccc;padding-top:10px}</style></head><body><div class="orcamento-preview">${html}</div><script>window.onload=function(){setTimeout(function(){window.print();setTimeout(function(){window.close()},1000)},300)};<\/script></body></html>`);
         w.document.close();
     }
+    
     // ============================================
     // RELATÓRIOS
     // ============================================
@@ -4439,8 +4569,7 @@ async function alterarStatusOrcamento(id, novoStatus) {
             } catch (e) { Toast.error('Erro!'); }
         }
     }
-    
-    // ============================================
+        // ============================================
     // BACKUP
     // ============================================
     function exportarBackupCompleto() {
@@ -4703,8 +4832,7 @@ async function alterarStatusOrcamento(id, novoStatus) {
             }
         }
     }
-    
-    // ============================================
+        // ============================================
     // EDITOR - CRIAR ELEMENTOS
     // ============================================
     function adicionarTextoEditor() { criarElementoTexto('Texto...', 50, 50, { fontSize: '12px' }, '300px'); }
@@ -4801,8 +4929,7 @@ async function alterarStatusOrcamento(id, novoStatus) {
         if (l > 5) r += `<tr><td colspan="${c.length}" style="text-align:center;color:#999;">... +${l-5} linhas ...</td></tr>`;
         d.innerHTML = `<table class="editor-table"><thead>${h}</thead><tbody>${r}</tbody></table><div style="font-size:9px;color:#666;padding:5px;">📊 ${l} linhas</div><div class="element-controls"><button class="control-btn duplicate" onclick="duplicarElemento('${id}')">📋</button><button class="control-btn edit" onclick="selecionarEEditarTabela('${id}')">✏️</button><button class="control-btn" onclick="removerElemento('${id}')">🗑️</button></div><div class="resize-handle e"></div><div class="resize-handle w"></div>`;
     }
-    
-    // ============================================
+        // ============================================
     // EDITOR - INTERAÇÃO COM ELEMENTOS
     // ============================================
     function configurarElemento(el) {
@@ -5001,8 +5128,7 @@ async function alterarStatusOrcamento(id, novoStatus) {
         isDragging = false;
         isResizing = false;
     }
-    
-    // ============================================
+        // ============================================
     // RENDERIZAÇÃO DE LAYOUTS
     // ============================================
     function renderizarLayoutPersonalizado(layout, dados) {
@@ -5140,8 +5266,8 @@ async function alterarStatusOrcamento(id, novoStatus) {
                         <strong>TOTAL: R$ ${d.total.toFixed(2)}</strong>
                     </div>
                 </div>
-                <div style="margin-top:15px;font-size:10px;border:1px solid #000;padding:10px;">
-                    <div><strong>PAGAMENTO:</strong> ${d.formaPagamento}</div>
+                <div style="margin-top:15px;font-size:10px;border:1px solid #000;padding:10px
+                         <div><strong>PAGAMENTO:</strong> ${d.formaPagamento}</div>
                     ${d.condicao ? `<div><strong>CONDIÇÃO:</strong> ${d.condicao}</div>` : ''}
                     <div><strong>PRAZO:</strong> ${d.prazoEntrega}</div>
                     <div><strong>FRETE:</strong> ${d.frete.texto}</div>
@@ -5151,12 +5277,13 @@ async function alterarStatusOrcamento(id, novoStatus) {
             </div>
         `;
     }
-	// ============================================
-	// ABRIR MÓDULO FINANCEIRO
-	// ============================================
-	function abrirFinanceiro() {
-    				window.open('financeiro.html', '_blank');
-	}
+    
+    // ============================================
+    // ABRIR MÓDULO FINANCEIRO
+    // ============================================
+    function abrirFinanceiro() {
+        window.open('financeiro.html', '_blank');
+    }
 </script>
 </body>
 </html>
